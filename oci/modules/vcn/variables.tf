@@ -17,6 +17,10 @@ variable "vcn_cidr" {
   description = "Bloque CIDR para la VCN"
   type        = string
   default     = null
+  validation {
+    condition     = var.vcn_cidr != null || var.vcn_id != null
+    error_message = "Debe proporcionar vcn_id o vcn_cidr (al menos uno)."
+  }
 }
 
 variable "subnet_cidr" {
